@@ -37,19 +37,24 @@ public class Course {
 
 
     @Override
-    public boolean equals(Object o) {
-        if (o == this)
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        if (!(o instanceof Course)) {
+        }
+        if (!(obj instanceof Course)) {
             return false;
         }
-        Course course = (Course) o;
-        return isGraduateCourse == course.isGraduateCourse && courseNum == course.courseNum && Objects.equals(courseDept, course.courseDept) && numCredits == course.numCredits;
+        Course other = (Course) obj;
+        return isGraduateCourse == other.isGraduateCourse
+                && courseNum == other.courseNum
+                && Objects.equals(courseDept, other.courseDept)
+                && numCredits == other.numCredits;
     }
     
     @Override
     public String toString() {
-        System.out.printf("Course: %3s-%3d | Number of Credits: %02d  | Graduate/Undergraduate", courseDept, courseNum, numCredits, isGraduateCourse)
+        String courseType = isGraduateCourse ? "Graduate" : "Undergraduate";
+        return String.format("Course: %s-%03d | Number of Credits: %02d  | %s", courseDept, courseNum, numCredits, courseType);
     }
     
     @Override
