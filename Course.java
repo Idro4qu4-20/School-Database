@@ -52,15 +52,12 @@ public class Course {
         System.out.printf("Course: %3s-%3d | Number of Credits: %02d  | Graduate/Undergraduate", courseDept, courseNum, numCredits, isGraduateCourse)
     }
     
-    public int compareTo(Course c) {
-        if (this.isGraduateCourse && !c.isGraduateCourse) {
-            return 1;
-        } else if (!this.isGraduateCourse && c.isGraduateCourse) {
-            return -1;
-        } else {
-            return this.courseNum - c.courseNum;
+    @Override
+    public int compareTo(Course otherCourse) {
+        int graduateComparison = Boolean.compare(this.isGraduateCourse, otherCourse.isGraduateCourse);
+        if (graduateComparison != 0) {
+            return graduateComparison;
         }
-
-    }
+        return Integer.compare(this.courseNum, otherCourse.courseNum);
     
 }
