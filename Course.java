@@ -65,4 +65,5 @@ public class Course {
         }
         return Integer.compare(this.courseNum, otherCourse.courseNum);
     
+    }
 }
