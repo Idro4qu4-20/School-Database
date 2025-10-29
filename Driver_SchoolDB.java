@@ -157,6 +157,7 @@ public class Driver_SchoolDB {
             System.out.println("File not found: " + fileName);
         }
 
+        //#region User Input
         while (!userValue.equals("exit")) {
             System.out.println("Enter a command, (Course, Faculty, GeneralStaff, Student, exit)");
             userValue = scanner.nextLine();
@@ -389,8 +390,10 @@ public class Driver_SchoolDB {
                     }
                 }
             }
-        
+            
+        //#endregion
         }
+        scanner.close();
     }
 
     /**
