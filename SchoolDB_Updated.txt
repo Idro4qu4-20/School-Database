@@ -1,0 +1,6 @@
+Course: MAT-771 | Number of Credits: 04  | Graduate
+Course: CMP-777 | Number of Credits: 04  | Graduate
+Course: CMP-711 | Number of Credits: 04  | Graduate
+Course: MAT-723 | Number of Credits: 04  | Graduate
+Course: CMP-168 | Number of Credits: 04  | Undergraduate
+Course: CMP-338 | Number of Credits: 04  | Undergraduate
