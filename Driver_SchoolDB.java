@@ -169,7 +169,7 @@ public class Driver_SchoolDB {
                 String userValue2 = "";
                 while (!userValue2.equals("exit")) {
                     boolean isGrad = false;
-                    System.out.println("Enter a command, (create, remove, find, list, exit)");
+                    System.out.println("Enter a command, (create, list, mc(minimum of all courses), mxc(maximum of all courses), exit)");
                     userValue2 = scanner.nextLine();
                     if (userValue2.equals("Exit") || userValue2.equals("exit") || userValue2.equals("EXIT") || userValue2.equals("e") || userValue2.equals("E")) {
                         break;
@@ -203,6 +203,26 @@ public class Driver_SchoolDB {
                         }
                     }
 
+                    if (userValue2.equals("mc") || userValue2.equals("Mc") || userValue2.equals("MC")) {
+                        int min = Integer.MAX_VALUE;
+                        for (Course c : courses) {
+                            if (c.getCourseNum() < min) {
+                                min = c.getCourseNum();
+                            }
+                        }
+                        System.out.println("The course with the minimum number is: " + min);
+                    }
+
+                    if (userValue2.equals("mxc") || userValue2.equals("Mxc") || userValue2.equals("MXC")) {
+                        int max = Integer.MIN_VALUE;
+                        for (Course c : courses) {
+                            if (c.getCourseNum() > max) {
+                                max = c.getCourseNum();
+                            }
+                        }
+                        System.out.println("The course with the maximum number is: " + max);
+                    }
+                
                 }
                 
             }
