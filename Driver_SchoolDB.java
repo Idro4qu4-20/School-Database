@@ -386,7 +386,7 @@ public class Driver_SchoolDB {
             if (userValue.equals("Student") || userValue.equals("student") || userValue.equals("STUDENT") || userValue.equals("s") || userValue.equals("S")) {
                 String userValue2 = "";
                 while (!userValue2.equals("exit")) {
-                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), exit)");
+                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), smc(Student with most Credits), slc(Student with least Credits), exit)");
                     userValue2 = scanner.nextLine();
                     if (userValue2.equals("Exit") || userValue2.equals("exit") || userValue2.equals("EXIT") || userValue2.equals("e") || userValue2.equals("E")) {
                         break;
@@ -451,6 +451,34 @@ public class Driver_SchoolDB {
                             System.out.println("Course at index " + courseIndex + ": " + course);
                         } else {
                             System.out.println("Invalid index: " + courseIndex);
+                        }
+                    }
+                
+                    if (userValue2.equals("smc") || userValue2.equals("Smc") || userValue2.equals("SMC") || userValue2.equals("s") || userValue2.equals("S")) {
+                        int maxCredits = 0;
+                        for (int i = 0; i < students.size(); i++) {
+                            if (students.get(i).getNumCredits() > maxCredits) {
+                                maxCredits = students.get(i).getNumCredits();
+                            }
+                        }
+                        for (int i = 0; i < students.size(); i++) {
+                            if (students.get(i).getNumCredits() == maxCredits) {
+                                System.out.println("Student " + students.get(i).getName() + " has the most credits");
+                            }
+                        }
+                    }
+                
+                    if (userValue2.equals("slc") || userValue2.equals("Slc") || userValue2.equals("SLC") || userValue2.equals("s") || userValue2.equals("S")) {
+                        int minCredits = Integer.MAX_VALUE;
+                        for (int i = 0; i < students.size(); i++) {
+                            if (students.get(i).getNumCredits() < minCredits) {
+                                minCredits = students.get(i).getNumCredits();
+                            }
+                        }
+                        for (int i = 0; i < students.size(); i++) {
+                            if (students.get(i).getNumCredits() == minCredits) {
+                                System.out.println("Student " + students.get(i).getName() + " has the least credits");
+                            }
                         }
                     }
                 }
