@@ -211,7 +211,7 @@ public class Driver_SchoolDB {
                 String userValue2 = "";
                 while (!userValue2.equals("exit")) {
                     boolean isTend = false;
-                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), exit)");
+                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), cq(course query), exit)");
                     userValue2 = scanner.nextLine();
                     if (userValue2.equals("Exit") || userValue2.equals("exit") || userValue2.equals("EXIT") || userValue2.equals("e") || userValue2.equals("E")) {
                         break;
@@ -282,6 +282,21 @@ public class Driver_SchoolDB {
                             System.out.println("Course at index " + courseIndex + ": " + course);
                         } else {
                             System.out.println("Invalid index: " + courseIndex);
+                        }
+                    }
+                
+                    if (userValue2.equals("cq") || userValue2.equals("Cq") || userValue2.equals("CQ")) {
+                        System.out.println("Enter the course ID");
+                        int courseID = Integer.parseInt(scanner.nextLine()) - 1;
+                        Course course = courses.get(courseID);
+                        System.out.println("Enter the faculty ID");
+                        int facultyID = Integer.parseInt(scanner.nextLine()) - 1;
+                        Faculty faculty = faculties.get(facultyID);
+                        for (int i = 0; i < faculty.getNumCoursesTaught(); i++) {
+                            if (faculty.getCourseTaught(i).equals(course)) {
+                                System.out.println("Course " + course.getCourseName() + " is taught by faculty " + faculty.getName());
+                                break;
+                            }
                         }
                     }
                 }
@@ -390,8 +405,8 @@ public class Driver_SchoolDB {
                     }
                 }
             }
-            
-        //#endregion
+        
+            //#endregion
         }
         scanner.close();
     }
