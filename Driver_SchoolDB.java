@@ -520,16 +520,19 @@ public class Driver_SchoolDB {
     private static void saveFile(Path filePath, ArrayList<Course> courses, ArrayList<Faculty> faculties, ArrayList<Student> students, ArrayList<GeneralStaff> generalStaff) throws IOException {
         List<String> lines = new ArrayList<>();
         for (Course c : courses) {
-            lines.add("Course: " + c.isGraduateCourse() + "," + c.getCourseNum() + "," + c.getCourseDept() + "," + c.getNumCredits());
+            lines.add("Course: " + c.isGraduateCourse() + ", " + c.getCourseNum() + ", " + c.getCourseDept() + ", " + c.getNumCredits());
         }
+        lines.add("");
         for (Faculty f : faculties) {
-            lines.add("Faculty: " + f.getName() + "," + f.getBirthYear() + "," + f.getDeptName() + "," + f.isTenured());
+            lines.add("Faculty: " + f.getName() + ", " + f.getBirthYear() + ", " + f.getDeptName() + ", " + f.isTenured());
         }
+        lines.add("");
         for (Student s : students) {
-            lines.add("Student: " + s.getName() + "," + s.getBirthYear() + "," + s.getMajor() + "," + s.isGraduate());
+            lines.add("Student: " + s.getName() + ", " + s.getBirthYear() + ", " + s.getMajor() + ", " + s.isGraduate());
         }
+        lines.add("");
         for (GeneralStaff gs : generalStaff) {
-            lines.add("GeneralStaff: " + gs.getName() + "," + gs.getBirthYear() + "," + gs.getDeptName() + "," + gs.getDuty());
+            lines.add("GeneralStaff: " + gs.getName() + ", " + gs.getBirthYear() + ", " + gs.getDeptName() + ", " + gs.getDuty());
         }
         Files.write(filePath, lines, StandardCharsets.UTF_8);
     }
