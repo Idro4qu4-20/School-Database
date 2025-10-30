@@ -211,7 +211,7 @@ public class Driver_SchoolDB {
                 String userValue2 = "";
                 while (!userValue2.equals("exit")) {
                     boolean isTend = false;
-                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), cq(course query), exit)");
+                    System.out.println("Enter a command, (create, list, ac(add course), gc(get course), cq(course query), hct(who teaches the most courses), lct(who teaches the least courses), exit)");
                     userValue2 = scanner.nextLine();
                     if (userValue2.equals("Exit") || userValue2.equals("exit") || userValue2.equals("EXIT") || userValue2.equals("e") || userValue2.equals("E")) {
                         break;
@@ -298,7 +298,37 @@ public class Driver_SchoolDB {
                                 break;
                             }
                         }
+                        System.out.println("Course " + course.getCourseName() + " is not taught by faculty " + faculty.getName());
                     }
+                
+                    if (userValue2.equals("hct") || userValue2.equals("Hct") || userValue2.equals("HCT")) {
+                        int maxCourses = 0;
+                        for (int i = 0; i < faculties.size(); i++) {
+                            if (faculties.get(i).getNumCoursesTaught() > maxCourses) {
+                                maxCourses = faculties.get(i).getNumCoursesTaught();
+                            }
+                        }
+                        for (int i = 0; i < faculties.size(); i++) {
+                            if (faculties.get(i).getNumCoursesTaught() == maxCourses) {
+                                System.out.println("Faculty " + faculties.get(i).getName() + " teaches the most courses");
+                            }
+                        }
+                    }
+                
+                    if (userValue2.equals("lct") || userValue2.equals("Lct") || userValue2.equals("LCT")) {
+                        int minCourses = Integer.MAX_VALUE;
+                        for (int i = 0; i < faculties.size(); i++) {
+                            if (faculties.get(i).getNumCoursesTaught() < minCourses) {
+                                minCourses = faculties.get(i).getNumCoursesTaught();
+                            }
+                        }
+                        for (int i = 0; i < faculties.size(); i++) {
+                            if (faculties.get(i).getNumCoursesTaught() == minCourses) {
+                                System.out.println("Faculty " + faculties.get(i).getName() + " teaches the least courses");
+                            }
+                        }
+                    }
+                
                 }
             }
         
