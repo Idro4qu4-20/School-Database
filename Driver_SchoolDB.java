@@ -5,16 +5,10 @@ import java.nio.file.Files;
 import java.io.IOException;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.List;
+import java.nio.charset.StandardCharsets;
 
-/**
- * Driver class for the School Database application.
- * Searches for SchoolDB_Initial.txt, parses its contents into objects,
- * and prints a formatted report by categories.
- */
 public class Driver_SchoolDB {
-    /**
-     * Main entry point. Finds SchoolDB_Initial.txt, parses it, and prints formatted output.
-     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String userValue = "";
@@ -159,7 +153,7 @@ public class Driver_SchoolDB {
 
         //#region User Input
         while (!userValue.equals("exit")) {
-            System.out.println("Enter a command, (Course, Faculty, GeneralStaff, Student, exit)");
+            System.out.println("Enter a command, (Course, Faculty, GeneralStaff, Student, Save, exit)");
             userValue = scanner.nextLine();
             if (userValue.equals("Exit") || userValue.equals("exit") || userValue.equals("EXIT") || userValue.equals("e") || userValue.equals("E")) {
                 break;
@@ -484,12 +478,20 @@ public class Driver_SchoolDB {
                 }
             }
         
-            //#endregion
+            if (userValue.equals("Save") || userValue.equals("save") || userValue.equals("SAVE") || userValue.equals("s") || userValue.equals("S")) {
+                try {
+                    Path savePath = Paths.get(System.getProperty("user.dir"), "SchoolDB_Updated.txt");
+                    saveFile(savePath, courses, faculties, students, generalStaff);
+                    System.out.println("Database saved successfully to SchoolDB_Updated.txt.");
+                } catch (IOException e) {
+                    System.out.println("Error saving file: " + e.getMessage());
+                }
+            }
         }
         scanner.close();
     }
 
-    /**
+            /**
      * Recursively searches for a file with the given name starting from the root path.
      * @param root the starting directory
      * @param fileName the name of the file to find
@@ -505,4 +507,31 @@ public class Driver_SchoolDB {
             return Optional.empty();
         }
     }
+
+    /**
+     * Saves the school database to the specified file path.
+     * @param filePath the path to save the file
+     * @param courses list of courses
+     * @param faculties list of faculties
+     * @param students list of students
+     * @param generalStaff list of general staff
+     * @throws IOException if an I/O error occurs
+     */
+    private static void saveFile(Path filePath, ArrayList<Course> courses, ArrayList<Faculty> faculties, ArrayList<Student> students, ArrayList<GeneralStaff> generalStaff) throws IOException {
+        List<String> lines = new ArrayList<>();
+        for (Course c : courses) {
+            lines.add("Course: " + c.isGraduateCourse() + "," + c.getCourseNum() + "," + c.getCourseDept() + "," + c.getNumCredits());
+        }
+        for (Faculty f : faculties) {
+            lines.add("Faculty: " + f.getName() + "," + f.getBirthYear() + "," + f.getDeptName() + "," + f.isTenured());
+        }
+        for (Student s : students) {
+            lines.add("Student: " + s.getName() + "," + s.getBirthYear() + "," + s.getMajor() + "," + s.isGraduate());
+        }
+        for (GeneralStaff gs : generalStaff) {
+            lines.add("GeneralStaff: " + gs.getName() + "," + gs.getBirthYear() + "," + gs.getDeptName() + "," + gs.getDuty());
+        }
+        Files.write(filePath, lines, StandardCharsets.UTF_8);
+    }
 }
+
