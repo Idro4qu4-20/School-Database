@@ -1,3 +1,5 @@
+//https://youtu.be/oNtu4Z6pXgs
+
 import java.util.Scanner;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,7 +23,6 @@ public class Driver_SchoolDB {
         if (filePath.isPresent()) {
             try {
                 String fileContent = new String(Files.readAllBytes(filePath.get()));
-                // Print raw input
                 System.out.println(fileContent);
 
 
@@ -107,43 +108,6 @@ public class Driver_SchoolDB {
                     }
                 }
 
-                // Print formatted output
-                System.out.println("**************************************************************");
-                System.out.println("SCHOOL DATABASE INFO:");
-                System.out.println();
-                System.out.println("************************************************");
-                System.out.println("COURSES:");
-                for (Course c : courses) {
-                    System.out.println(c);
-                }
-                System.out.println("************************************************");
-                System.out.println("************************************************");
-                System.out.println("PERSONS:");
-                System.out.println("************************************************");
-                System.out.println("************************************************");
-                System.out.println("EMPLOYEES:");
-                System.out.println("************************************************");
-                System.out.println("************************************************");
-                System.out.println("GENERAL STAFF:");
-                for (GeneralStaff gs : generalStaff) {
-                    System.out.println(gs);
-                }
-                System.out.println("************************************************");
-                System.out.println("************************************************");
-                System.out.println("FACULTY:");
-                for (Faculty f : faculties) {
-                    System.out.println(f);
-                }
-                System.out.println("************************************************");
-                System.out.println("************************************************");
-                System.out.println("STUDENTS:");
-                for (Student s : students) {
-                    System.out.println(s);
-                }
-                System.out.println("************************************************");
-                System.out.println("**************************************************************");
-                System.out.println();
-
             } catch (IOException e) {
                 System.out.println("Error reading file: " + filePath.get());
             }
@@ -153,7 +117,7 @@ public class Driver_SchoolDB {
 
         //#region User Input
         while (!userValue.equals("exit")) {
-            System.out.println("Enter a command, (Course, Faculty, GeneralStaff, Student, Save, exit)");
+            System.out.println("Enter a command, (Course, Faculty, GeneralStaff, Student, Save, toString, exit)");
             userValue = scanner.nextLine();
             if (userValue.equals("Exit") || userValue.equals("exit") || userValue.equals("EXIT") || userValue.equals("e") || userValue.equals("E")) {
                 break;
@@ -486,6 +450,44 @@ public class Driver_SchoolDB {
                 } catch (IOException e) {
                     System.out.println("Error saving file: " + e.getMessage());
                 }
+            }
+
+            if (userValue.equals("toString") || userValue.equals("tostring") || userValue.equals("TOSTRING") || userValue.equals("t") || userValue.equals("T")) {
+                System.out.println("**************************************************************");
+                System.out.println("SCHOOL DATABASE INFO:");
+                System.out.println();
+                System.out.println("************************************************");
+                System.out.println("COURSES:");
+                for (Course c : courses) {
+                    System.out.println(c);
+                }
+                System.out.println("************************************************");
+                System.out.println("************************************************");
+                System.out.println("PERSONS:");
+                System.out.println("************************************************");
+                System.out.println("************************************************");
+                System.out.println("EMPLOYEES:");
+                System.out.println("************************************************");
+                System.out.println("************************************************");
+                System.out.println("GENERAL STAFF:");
+                for (GeneralStaff gs : generalStaff) {
+                    System.out.println(gs);
+                }
+                System.out.println("************************************************");
+                System.out.println("************************************************");
+                System.out.println("FACULTY:");
+                for (Faculty f : faculties) {
+                    System.out.println(f);
+                }
+                System.out.println("************************************************");
+                System.out.println("************************************************");
+                System.out.println("STUDENTS:");
+                for (Student s : students) {
+                    System.out.println(s);
+                }
+                System.out.println("************************************************");
+                System.out.println("**************************************************************");
+                System.out.println();
             }
         }
         scanner.close();
